@@ -45,7 +45,7 @@ class SVGTexture : public Texture2D {
 	float base_scale = 1.0;
 	float saturation = 1.0;
 	Dictionary color_map;
-	Size2 size_override;
+	Size2i size_override;
 
 	struct ScalingLevel {
 		HashSet<SVGTexture *> textures;

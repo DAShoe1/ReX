@@ -665,7 +665,7 @@ Dictionary GDExtensionAPIDump::generate_extension_api(bool p_include_docs) {
 			d["is_keyed"] = Variant::is_keyed(type);
 
 			DocData::ClassDoc *builtin_doc = nullptr;
-			if (p_include_docs && d["name"] != "Nil") {
+			if (p_include_docs && static_cast<String>(d["name"]) != "Nil") {
 				builtin_doc = EditorHelp::get_doc_data()->class_list.getptr(d["name"]);
 				CRASH_COND_MSG(!builtin_doc, vformat("Could not find '%s' in DocData.", d["name"]));
 			}

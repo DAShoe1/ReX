@@ -34,6 +34,7 @@
 
 #include "core/config/project_settings.h"
 #include "core/debugger/engine_debugger.h"
+#include "core/math/vector2i.h"
 #include "core/templates/pair.h"
 #include "core/templates/sort_array.h"
 #include "scene/2d/audio_listener_2d.h"
@@ -372,7 +373,7 @@ void Viewport::_sub_window_update(Window *p_window) {
 	}
 
 	const Transform2D xform = sw.window->window_transform * sw.window->stretch_transform;
-	Rect2 vr = xform.xform(sw.window->get_visible_rect());
+	Rect2i vr = xform.xform(sw.window->get_visible_rect());
 	vr.position += p_window->get_position();
 	if (vr != r) {
 		RS::get_singleton()->canvas_item_add_rect(sw.canvas_item, r, Color());
@@ -1171,7 +1172,7 @@ Rect2 Viewport::get_visible_rect() const {
 	ERR_READ_THREAD_GUARD_V(Rect2());
 	Rect2 r;
 
-	if (size == Size2()) {
+	if (size == Size2i()) {
 		r = Rect2(Point2(), DisplayServer::get_singleton()->window_get_size());
 	} else {
 		r = Rect2(Point2(), size);

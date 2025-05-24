@@ -31,6 +31,7 @@
 /**************************************************************************/
 
 #include "tree.h"
+#include "core/math/rect2i.h"
 #include "tree.compat.inc"
 
 #include "core/config/project_settings.h"
@@ -581,7 +582,7 @@ Ref<Texture2D> TreeItem::get_icon_overlay(int p_column) const {
 	return cells[p_column].icon_overlay;
 }
 
-void TreeItem::set_icon_region(int p_column, const Rect2 &p_icon_region) {
+void TreeItem::set_icon_region(int p_column, const Rect2i &p_icon_region) {
 	ERR_FAIL_INDEX(p_column, cells.size());
 
 	if (cells[p_column].icon_region == p_icon_region) {
@@ -594,7 +595,7 @@ void TreeItem::set_icon_region(int p_column, const Rect2 &p_icon_region) {
 	_changed_notify(p_column);
 }
 
-Rect2 TreeItem::get_icon_region(int p_column) const {
+Rect2i TreeItem::get_icon_region(int p_column) const {
 	ERR_FAIL_INDEX_V(p_column, cells.size(), Rect2());
 	return cells[p_column].icon_region;
 }

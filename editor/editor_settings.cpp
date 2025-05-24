@@ -1370,7 +1370,7 @@ void EditorSettings::setup_network() {
 			continue;
 		}
 		// Select current IP (found)
-		if (ip == current) {
+		if (String(ip) == current) {
 			selected = ip;
 		}
 		if (!hint.is_empty()) {

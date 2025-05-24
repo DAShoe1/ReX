@@ -246,7 +246,7 @@ bool ItemList::is_item_icon_transposed(int p_idx) const {
 	return items[p_idx].icon_transposed;
 }
 
-void ItemList::set_item_icon_region(int p_idx, const Rect2 &p_region) {
+void ItemList::set_item_icon_region(int p_idx, const Rect2i &p_region) {
 	if (p_idx < 0) {
 		p_idx += get_item_count();
 	}

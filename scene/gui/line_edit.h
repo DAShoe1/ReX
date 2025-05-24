@@ -112,7 +112,7 @@ private:
 	String placeholder_translated;
 	String secret_character = U"•";
 	String ime_text;
-	Point2 ime_selection;
+	Point2i ime_selection;
 
 	RID text_rid;
 	RID accessibility_text_root_element;

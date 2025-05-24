@@ -353,7 +353,7 @@ void MenuBar::_notification(int p_what) {
 				// Handled by OS.
 				return;
 			}
-			Vector2 pos = get_local_mouse_position();
+			Vector2i pos = get_local_mouse_position();
 			if (pos == old_mouse_pos) {
 				return;
 			}

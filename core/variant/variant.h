@@ -816,7 +816,15 @@ public:
 	//argsVariant call()
 
 	bool operator==(const Variant &p_variant) const;
+	bool operator==(const char *p_char) const;
+	bool operator==(const String &p_string) const;
+	bool operator==(const NodePath &p_node_path) const;
+	bool operator==(const Object *p_object) const;
 	bool operator!=(const Variant &p_variant) const;
+	bool operator!=(const char *p_char) const;
+	bool operator!=(const String &p_string) const;
+	bool operator!=(const NodePath &p_node_path) const;
+	bool operator!=(const Object *p_object) const;
 	bool operator<(const Variant &p_variant) const;
 	uint32_t hash() const;
 	uint32_t recursive_hash(int recursion_count) const;

@@ -32,6 +32,7 @@
 
 #include "tile_set_editor.h"
 
+#include "scene/resources/2d/tile_set.h"
 #include "tile_data_editors.h"
 #include "tiles_editor_plugin.h"
 
@@ -430,7 +431,7 @@ void TileSetEditor::_patterns_item_list_gui_input(const Ref<InputEvent> &p_event
 void TileSetEditor::_pattern_preview_done(Ref<TileMapPattern> p_pattern, Ref<Texture2D> p_texture) {
 	// TODO optimize ?
 	for (int i = 0; i < patterns_item_list->get_item_count(); i++) {
-		if (patterns_item_list->get_item_metadata(i) == p_pattern) {
+		if (static_cast<Ref<TileMapPattern>>(patterns_item_list->get_item_metadata(i)) == p_pattern) {
 			patterns_item_list->set_item_icon(i, p_texture);
 			break;
 		}

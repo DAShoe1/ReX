@@ -144,7 +144,7 @@ public:
 	void add_stacked_shadow(int p_index = -1);
 	void move_stacked_shadow(int p_from_index, int p_to_position);
 	void remove_stacked_shadow(int p_index);
-	void set_stacked_shadow_offset(int p_index, const Vector2 &p_offset);
+	void set_stacked_shadow_offset(int p_index, const Vector2i &p_offset);
 	Vector2 get_stacked_shadow_offset(int p_index) const;
 	void set_stacked_shadow_color(int p_index, const Color &p_color);
 	Color get_stacked_shadow_color(int p_index) const;

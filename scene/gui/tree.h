@@ -300,8 +300,8 @@ public:
 	void set_icon_overlay(int p_column, const Ref<Texture2D> &p_icon_overlay);
 	Ref<Texture2D> get_icon_overlay(int p_column) const;
 
-	void set_icon_region(int p_column, const Rect2 &p_icon_region);
-	Rect2 get_icon_region(int p_column) const;
+	void set_icon_region(int p_column, const Rect2i &p_icon_region);
+	Rect2i get_icon_region(int p_column) const;
 
 	void set_icon_modulate(int p_column, const Color &p_modulate);
 	Color get_icon_modulate(int p_column) const;

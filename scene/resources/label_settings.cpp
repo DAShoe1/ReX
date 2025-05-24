@@ -31,6 +31,7 @@
 /**************************************************************************/
 
 #include "label_settings.h"
+#include "core/math/vector2i.h"
 
 void LabelSettings::_font_changed() {
 	emit_changed();
@@ -358,7 +359,7 @@ void LabelSettings::remove_stacked_shadow(int p_index) {
 	emit_changed();
 }
 
-void LabelSettings::set_stacked_shadow_offset(int p_index, const Vector2 &p_offset) {
+void LabelSettings::set_stacked_shadow_offset(int p_index, const Vector2i &p_offset) {
 	ERR_FAIL_INDEX(p_index, stacked_shadow_data.size());
 	if (stacked_shadow_data[p_index].offset != p_offset) {
 		stacked_shadow_data.write[p_index].offset = p_offset;

@@ -231,12 +231,12 @@ void WindowWrapper::restore_window(const Rect2i &p_rect, int p_screen) {
 	window->set_current_screen(p_screen);
 }
 
-void WindowWrapper::restore_window_from_saved_position(const Rect2 p_window_rect, int p_screen, const Rect2 p_screen_rect) {
+void WindowWrapper::restore_window_from_saved_position(const Rect2i p_window_rect, int p_screen, const Rect2i p_screen_rect) {
 	ERR_FAIL_COND(!is_window_available());
 
-	Rect2 window_rect = p_window_rect;
+	Rect2i window_rect = p_window_rect;
 	int screen = p_screen;
-	Rect2 restored_screen_rect = p_screen_rect;
+	Rect2i restored_screen_rect = p_screen_rect;
 
 	if (screen < 0 || screen >= DisplayServer::get_singleton()->get_screen_count()) {
 		// Fallback to the main window screen if the saved screen is not available.

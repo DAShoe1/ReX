@@ -159,6 +159,20 @@ bool NodePath::operator!=(const NodePath &p_path) const {
 	return (!(*this == p_path));
 }
 
+bool NodePath::operator==(const String &p_string) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return (String(*this) == p_string);
+}
+
+bool NodePath::operator==(const char *p_char) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return (String(*this) == p_char);
+}
+
 void NodePath::operator=(const NodePath &p_path) {
 	if (this == &p_path) {
 		return;

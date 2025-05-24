@@ -306,7 +306,7 @@ private:
 
 	// Text properties.
 	String ime_text = "";
-	Point2 ime_selection;
+	Point2i ime_selection;
 
 	// Placeholder
 	String placeholder_text = "";

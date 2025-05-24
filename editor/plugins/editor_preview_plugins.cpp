@@ -234,7 +234,7 @@ bool EditorBitmapPreviewPlugin::handles(const String &p_type) const {
 Ref<Texture2D> EditorBitmapPreviewPlugin::generate(const Ref<Resource> &p_from, const Size2 &p_size, Dictionary &p_metadata) const {
 	Ref<BitMap> bm = p_from;
 
-	if (bm->get_size() == Size2()) {
+	if (bm->get_size() == Size2i()) {
 		return Ref<Texture2D>();
 	}
 

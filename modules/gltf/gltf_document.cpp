@@ -32,6 +32,7 @@
 
 #include "gltf_document.h"
 
+#include "core/math/vector2i.h"
 #include "extensions/gltf_document_extension_convert_importer_mesh.h"
 #include "extensions/gltf_spec_gloss.h"
 #include "gltf_state.h"
@@ -4564,13 +4565,13 @@ Error GLTFDocument::_serialize_materials(Ref<GLTFState> p_state) {
 					width = albedo_texture->get_width();
 				}
 				orm_image->initialize_data(width, height, false, Image::FORMAT_RGBA8);
-				if (ao_image.is_valid() && ao_image->get_size() != Vector2(width, height)) {
+				if (ao_image.is_valid() && ao_image->get_size() != Vector2i(width, height)) {
 					ao_image->resize(width, height, Image::INTERPOLATE_LANCZOS);
 				}
-				if (roughness_image.is_valid() && roughness_image->get_size() != Vector2(width, height)) {
+				if (roughness_image.is_valid() && roughness_image->get_size() != Vector2i(width, height)) {
 					roughness_image->resize(width, height, Image::INTERPOLATE_LANCZOS);
 				}
-				if (metallness_image.is_valid() && metallness_image->get_size() != Vector2(width, height)) {
+				if (metallness_image.is_valid() && metallness_image->get_size() != Vector2i(width, height)) {
 					metallness_image->resize(width, height, Image::INTERPOLATE_LANCZOS);
 				}
 				for (int32_t h = 0; h < height; h++) {
@@ -6586,7 +6587,7 @@ NodePath GLTFDocument::_find_material_node_path(Ref<GLTFState> p_state, Ref<Mate
 	for (Ref<GLTFMesh> gltf_mesh : p_state->meshes) {
 		TypedArray<Material> materials = gltf_mesh->get_instance_materials();
 		for (int mat_index = 0; mat_index < materials.size(); mat_index++) {
-			if (materials[mat_index] == p_material) {
+			if (static_cast<Ref<Material>>(materials[mat_index]) == p_material) {
 				for (Ref<GLTFNode> gltf_node : p_state->nodes) {
 					if (gltf_node->mesh == mesh_index) {
 						NodePath node_path = gltf_node->get_scene_node_path(p_state);

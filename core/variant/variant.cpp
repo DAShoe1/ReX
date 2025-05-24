@@ -867,6 +867,34 @@ bool Variant::operator==(const Variant &p_variant) const {
 	return hash_compare(p_variant);
 }
 
+bool Variant::operator==(const char *p_char) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return hash_compare(p_char);
+}
+
+bool Variant::operator==(const String &p_string) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return hash_compare(p_string);
+}
+
+bool Variant::operator==(const NodePath &p_node_path) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return hash_compare(p_node_path);
+}
+
+bool Variant::operator==(const Object *p_object) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+	return hash_compare(p_object);
+}
+
 bool Variant::operator!=(const Variant &p_variant) const {
 	// Don't use `!hash_compare(p_variant)` given it makes use of OP_EQUAL
 	if (type != p_variant.type) { //evaluation of operator== needs to be more strict
@@ -875,6 +903,63 @@ bool Variant::operator!=(const Variant &p_variant) const {
 	bool v;
 	Variant r;
 	evaluate(OP_NOT_EQUAL, *this, p_variant, r, v);
+	return r;
+}
+
+bool Variant::operator!=(const char *p_char) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+
+	// Don't use `!hash_compare(p_variant)` given it makes use of OP_EQUAL
+	if (type != Variant::Type::STRING && type != Variant::Type::STRING_NAME && type != Variant::Type::NODE_PATH) { //evaluation of operator== needs to be more strict
+		return true;
+	}
+	bool v;
+	Variant r;
+	evaluate(OP_NOT_EQUAL, *this, p_char, r, v);
+	return r;
+}
+
+bool Variant::operator!=(const String &p_string) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+
+	// Don't use `!hash_compare(p_variant)` given it makes use of OP_EQUAL
+	if (type != Variant::Type::STRING && type != Variant::Type::STRING_NAME && type != Variant::Type::NODE_PATH) { //evaluation of operator== needs to be more strict
+		return true;
+	}
+	bool v;
+	Variant r;
+	evaluate(OP_NOT_EQUAL, *this, p_string, r, v);
+	return r;
+}
+
+bool Variant::operator!=(const NodePath &p_node_path) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+
+	// Don't use `!hash_compare(p_variant)` given it makes use of OP_EQUAL
+	if (type != Variant::Type::STRING && type != Variant::Type::STRING_NAME && type != Variant::Type::NODE_PATH) { //evaluation of operator== needs to be more strict
+		return true;
+	}
+	bool v;
+	Variant r;
+	evaluate(OP_NOT_EQUAL, *this, p_node_path, r, v);
+	return r;
+}
+
+bool Variant::operator!=(const Object *p_object) const {
+	/*
+	 * NOTE: Added to solve C++20 ambiguity. No idea if this is a good fix.
+	 */
+
+	// Don't use `!hash_compare(p_variant)` given it makes use of OP_EQUAL
+	bool v;
+	Variant r;
+	evaluate(OP_NOT_EQUAL, *this, p_object, r, v);
 	return r;
 }
 

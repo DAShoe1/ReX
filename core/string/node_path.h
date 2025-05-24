@@ -85,6 +85,8 @@ public:
 
 	bool operator==(const NodePath &p_path) const;
 	bool operator!=(const NodePath &p_path) const;
+	bool operator==(const String &p_string) const;
+	bool operator==(const char *p_char) const;
 	void operator=(const NodePath &p_path);
 
 	void simplify();

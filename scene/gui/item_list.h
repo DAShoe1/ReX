@@ -133,9 +133,9 @@ private:
 	int max_text_lines = 1;
 	int max_columns = 1;
 
-	Size2 fixed_icon_size;
-	Size2 max_item_size_cache;
-	Size2 fixed_tag_icon_size;
+	Size2i fixed_icon_size;
+	Size2i max_item_size_cache;
+	Size2i fixed_tag_icon_size;
 
 	int defer_select_single = -1;
 	bool allow_rmb_select = false;
@@ -224,7 +224,7 @@ public:
 	void set_item_icon_transposed(int p_idx, const bool transposed);
 	bool is_item_icon_transposed(int p_idx) const;
 
-	void set_item_icon_region(int p_idx, const Rect2 &p_region);
+	void set_item_icon_region(int p_idx, const Rect2i &p_region);
 	Rect2 get_item_icon_region(int p_idx) const;
 
 	void set_item_icon_modulate(int p_idx, const Color &p_modulate);

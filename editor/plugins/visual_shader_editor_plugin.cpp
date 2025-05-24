@@ -1784,7 +1784,7 @@ void VisualShaderEditor::_update_custom_script(const Ref<Script> &p_script) {
 						continue;
 					}
 					Ref<VisualShaderNodeCustom> custom_node = vsnode;
-					if (custom_node.is_null() || custom_node->get_script() != p_script) {
+					if (custom_node.is_null() || static_cast<Ref<Script>>(custom_node->get_script()) != p_script) {
 						continue;
 					}
 					need_rebuild = true;
@@ -1896,7 +1896,7 @@ void VisualShaderEditor::_resources_removed() {
 								continue;
 							}
 							Ref<VisualShaderNodeCustom> custom_node = vsnode;
-							if (custom_node.is_null() || custom_node->get_script() != scr) {
+							if (custom_node.is_null() || static_cast<Ref<Script>>(custom_node->get_script()) != scr) {
 								continue;
 							}
 							visual_shader->remove_node(type, node_id);
