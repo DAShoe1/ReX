@@ -25,6 +25,12 @@ foreach(MODULE_DIR ${MODULE_DIRS})
 		if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/modules/${MODULE_DIR}")
 			if (EXISTS "${CMAKE_SOURCE_DIR}/modules/${MODULE_DIR}/CMakeLists.txt")
 				list(APPEND ENABLED_MODULES ${MODULE_DIR})
+				if (REX_TESTS)
+					if (IS_DIRECTORY "${CMAKE_SOURCE_DIR}/moduels/${MODULE_DIR}/tests")
+						file(GLOB MODULE_TEST_HEADERS ${CMAKE_SOURCE_DIR}/moduels/${MODULE_DIR}/tests/*.h)
+						list(APPEND TEST_HEADERS ${MODULE_TEST_HEADERS})
+					endif()
+				endif()
 			endif()
 		endif()
 	endif()
@@ -74,6 +80,15 @@ void uninitialize_modules(ModuleInitializationLevel p_level) {
 ${UNINIT_MODULES}
 }
 ")
+
+if (REX_TESTS)
+	generate_copyright_header("modules_enabled.gen.h")
+	set(TEST_HEADERS_FILE_CONTENT ${COPYRIGHT_HEADER})
+	foreach(TEST_HEADER ${TEST_HEADERS})
+		string(APPEND TEST_HEADERS_FILE_CONTENT "#include \"${TEST_HEADER}\"/n")
+	endforeach()
+	file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/modules_tests.gen.h ${TEST_HEADERS_FILE_CONTENT})
+endif()
 
 file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/modules_enabled.gen.h ${MODULE_ENABLED_FILE_CONTENT})
 file(WRITE ${CMAKE_CURRENT_SOURCE_DIR}/register_module_types.gen.cpp ${REGISTER_MODULE_FILE_CONTENT})

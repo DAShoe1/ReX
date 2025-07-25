@@ -6,7 +6,7 @@ add_library(rex_tests STATIC
 	${TESTS_SOURCES}
 )
 
-clone_library(rex_engine rex_servers)
+clone_library(rex_engine rex_tests)
 
 if (REX_PLATFORM STREQUAL "windows")
 	target_compile_definitions(rex_tests PRIVATE

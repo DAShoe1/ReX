@@ -151,19 +151,14 @@ if(REX_PLATFORM STREQUAL "linuxbsd")
 			if (NOT USE_LLVM)
 				message(FATAL_ERROR "ThinLTO is only compatible with LLVM, use `use_llvm=yes` or `lto=full`.")
 			endif()
-			target_compile_options(rex_engine PUBLIC
-				-flto=thin
-			)
-			target_link_options(rex_engine PUBLIC
-				-flto=thin
-			)
+			target_compile_options(rex_engine PUBLIC -flto=thin)
+			target_link_options(rex_engine PUBLIC -flto=thin)
+		elseif (NOT USE_LLVM AND NUM_JOBS GREATER 1)
+			target_compile_options(rex_engine PUBLIC -flto)
+			target_link_options(rex_engine PUBLIC -flto=${NUM_JOBS})
 		else()
-			target_compile_options(rex_engine PUBLIC
-				-flto
-			)
-			target_link_options(rex_engine PUBLIC
-				-flto
-			)
+			target_compile_options(rex_engine PUBLIC -flto)
+			target_link_options(rex_engine PUBLIC -flto)
 		endif()
 		if (NOT USE_LLVM)
 			set(RANLIB "gcc-ranlib")
