@@ -265,9 +265,7 @@ public:
 		return physics_server_3d->body_test_motion(p_body, p_parameters, r_result);
 	}
 
-	// this function only works on physics process, errors and returns null otherwise
 	PhysicsDirectBodyState3D *body_get_direct_state(RID p_body) override {
-		ERR_FAIL_COND_V(!Thread::is_main_thread(), nullptr);
 		return physics_server_3d->body_get_direct_state(p_body);
 	}
 
