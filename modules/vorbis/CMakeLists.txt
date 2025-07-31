@@ -63,7 +63,7 @@ if (BUILTIN_LIBVORBIS)
 
 endif()
 
-file(GLOB VORBIS_SOURCES *.cpp)
+file(GLOB VORBIS_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${VORBIS_SOURCES}
 )

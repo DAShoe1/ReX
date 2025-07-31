@@ -43,7 +43,7 @@ if (BUILTIN_ENET)
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC enet)
 endif()
 
-file(GLOB ENET_SOURCES *.cpp)
+file(GLOB ENET_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${ENET_SOURCES}
 )

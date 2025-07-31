@@ -19,7 +19,7 @@ clone_library(rex_modules rex_module_${MODULE_NAME})
 disable_warnings_for_target(rex_module_${MODULE_NAME})
 set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-file(GLOB MONO_SOURCES
+file(GLOB MONO_SOURCES CONFIGURE_DEPENDS
 	*.cpp
 	glue/*.cpp
 	mono_gd/*.cpp
@@ -28,10 +28,10 @@ file(GLOB MONO_SOURCES
 target_sources(rex_module_${MODULE_NAME} PRIVATE ${MONO_SOURCES})
 
 if (EDITOR_BUILD)
-	file(GLOB MONO_EDITOR_SOURCES editor/*.cpp)
+	file(GLOB MONO_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE ${MONO_EDITOR_SOURCES})
 
-	file(GLOB_RECURSE SCRIPT_TEMPLATES ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/*.cs)
+	file(GLOB_RECURSE SCRIPT_TEMPLATES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/*.cs)
 	add_custom_command(
 		OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/templates.gen.h
 		COMMAND ${_Python3_EXECUTABLE}

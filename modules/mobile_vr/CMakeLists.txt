@@ -17,7 +17,7 @@ if (NOT DISABLE_XR)
 	disable_warnings_for_target(rex_module_${MODULE_NAME})
 	set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-	file(GLOB MOBILE_VR_SOURCES *.cpp)
+	file(GLOB MOBILE_VR_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${MOBILE_VR_SOURCES}
 	)

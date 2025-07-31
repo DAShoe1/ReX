@@ -4,7 +4,7 @@ if (EDITOR_BUILD AND NOT REX_PLATFORM MATCHES "android|ios")
 	disable_warnings_for_target(rex_module_${MODULE_NAME})
 	set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-	file(GLOB GLSL_FILES *.glsl)
+	file(GLOB GLSL_FILES CONFIGURE_DEPENDS *.glsl)
 	list(JOIN GLSL_FILES " " SHADER_FILES_ARGS)
 	list(TRANSFORM GLSL_FILES APPEND ".gen.h")
 	add_custom_command(
@@ -19,7 +19,7 @@ if (EDITOR_BUILD AND NOT REX_PLATFORM MATCHES "android|ios")
 
 	add_dependencies(file_generators process_lightmapper_rd_shaders)
 
-	file(GLOB LIGHTMAPPER_RD_SOURCES *.cpp)
+	file(GLOB LIGHTMAPPER_RD_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${LIGHTMAPPER_RD_SOURCES}
 	)

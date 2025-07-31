@@ -156,7 +156,7 @@ if (NOT DISABLE_PHYSICS_3D AND NOT ARCH STREQUAL "ppc32")
 
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC jolt_physics)
 
-	file(GLOB_RECURSE JOLT_PHYSICS_SOURCES *.cpp)
+	file(GLOB_RECURSE JOLT_PHYSICS_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${JOLT_PHYSICS_SOURCES}
 	)

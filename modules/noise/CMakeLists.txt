@@ -25,12 +25,12 @@ target_include_directories(rex_module_${MODULE_NAME} PRIVATE
 	${CMAKE_SOURCE_DIR}/thirdparty/noise/
 )
 
-file(GLOB NOISE_SOURCES *.cpp)
+file(GLOB NOISE_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${NOISE_SOURCES}
 )
 if (EDITOR_BUILD)
-	file(GLOB NOISE_EDITOR_SOURCES editor/*.cpp)
+	file(GLOB NOISE_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${NOISE_EDITOR_SOURCES}
 	)

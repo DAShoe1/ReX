@@ -95,7 +95,7 @@ if (ARCH MATCHES "x86_64|arm64|wasm32" OR (ARCH STREQUAL "x86_32" AND REX_PLATFO
 
 	endif()
 
-	file(GLOB RAYCAST_SOURCES *.cpp)
+	file(GLOB RAYCAST_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${RAYCAST_SOURCES}
 	)

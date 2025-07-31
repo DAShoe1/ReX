@@ -11,6 +11,6 @@ add_custom_target(gdvirtual DEPENDS
 
 add_dependencies(file_generators gdvirtual)
 
-file(GLOB_RECURSE CORE_OBJECT_SOURCES *.cpp)
+file(GLOB_RECURSE CORE_OBJECT_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 target_sources(rex_core PRIVATE ${CORE_OBJECT_SOURCES})

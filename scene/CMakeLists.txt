@@ -1,4 +1,4 @@
-file(GLOB SCENE_SOURCES *.cpp)
+file(GLOB SCENE_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 add_library(rex_scene STATIC ${SCENE_SOURCES})
 

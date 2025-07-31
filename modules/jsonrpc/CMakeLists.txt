@@ -3,7 +3,7 @@ clone_library(rex_modules rex_module_${MODULE_NAME})
 disable_warnings_for_target(rex_module_${MODULE_NAME})
 set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-file(GLOB JSONRPC_SOURCES *.cpp)
+file(GLOB JSONRPC_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${JSONRPC_SOURCES}
 )
@@ -11,7 +11,7 @@ if (REX_TESTS)
 	target_compile_definitions(rex_module_${MODULE_NAME} PRIVATE
 		TESTS_ENABLED
 	)
-	file(GLOB JSONRPC_TESTS_SOURCES tests/*.cpp)
+	file(GLOB JSONRPC_TESTS_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${JSONRPC_TESTS_SOURCES}
 	)

@@ -19,7 +19,7 @@ clone_library(rex_module_${MODULE_NAME} etcpak)
 disable_warnings_for_target(etcpak)
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC etcpak)
 
-file(GLOB_RECURSE ETCPAK_SOURCES *.cpp)
+file(GLOB_RECURSE ETCPAK_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${ETCPAK_SOURCES}
 )

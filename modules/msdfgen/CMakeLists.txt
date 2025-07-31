@@ -43,7 +43,7 @@ if (BUILTIN_MSDFGEN)
 
 endif()
 
-file(GLOB MSDFGEN_SOURCES *.cpp)
+file(GLOB MSDFGEN_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${MSDFGEN_SOURCES}
 )

@@ -1,4 +1,4 @@
-file(GLOB FONT_LIST
+file(GLOB FONT_LIST CONFIGURE_DEPENDS
 	${CMAKE_SOURCE_DIR}/thirdparty/fonts/*.ttf
 	${CMAKE_SOURCE_DIR}/thirdparty/fonts/*.otf
 	${CMAKE_SOURCE_DIR}/thirdparty/fonts/*.woff
@@ -16,5 +16,5 @@ add_custom_command(
 add_custom_target(builtin_fonts DEPENDS ${CMAKE_SOURCE_DIR}/editor/themes/builtin_fonts.gen.h)
 add_dependencies(file_generators builtin_fonts)
 
-file(GLOB_RECURSE EDITOR_THEMES_SOURCES *.cpp)
+file(GLOB_RECURSE EDITOR_THEMES_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_editor PRIVATE ${EDITOR_THEMES_SOURCES})

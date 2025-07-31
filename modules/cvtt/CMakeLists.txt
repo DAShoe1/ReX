@@ -26,7 +26,7 @@ if (EDITOR_BUILD)
 	clone_library(rex_module_${MODULE_NAME} cvtt)
 	disable_warnings_for_target(cvtt)
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC cvtt)
-	file(GLOB_RECURSE CVTT_SOURCES *.cpp)
+	file(GLOB_RECURSE CVTT_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${CVTT_SOURCES}
 	)

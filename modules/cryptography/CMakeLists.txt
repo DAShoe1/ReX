@@ -32,7 +32,7 @@ elseif (${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
 	endif()
 endif()
 
-file(GLOB CRYPTO_SOURCES *.cpp)
+file(GLOB CRYPTO_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${CRYPTO_SOURCES}

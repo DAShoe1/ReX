@@ -27,7 +27,7 @@ if (NOT DISABLE_3D)
 
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC meshoptimizer)
 
-	file(GLOB MESHOPTIMIZER_SOURCES *.cpp)
+	file(GLOB MESHOPTIMIZER_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${MESHOPTIMIZER_SOURCES}
 	)

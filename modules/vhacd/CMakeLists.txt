@@ -23,7 +23,7 @@ if (NOT DISABLE_3D)
 	clone_library(rex_module_${MODULE_NAME} vhacd)
 	disable_warnings_for_target(vhacd)
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC vhacd)
-	file(GLOB VHACD_SOURCES *.cpp)
+	file(GLOB VHACD_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${VHACD_SOURCES}
 	)

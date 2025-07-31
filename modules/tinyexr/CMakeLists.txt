@@ -20,7 +20,7 @@ disable_warnings_for_target(tinyexr)
 
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC tinyexr)
 
-file(GLOB TINYEXR_SOURCES *.cpp)
+file(GLOB TINYEXR_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${TINYEXR_SOURCES}
 )

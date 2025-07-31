@@ -1,7 +1,7 @@
 
 add_subdirectory(shaders)
 
-file(GLOB SERVERS_RENDERING_RENDERER_RD_SOURCES
+file(GLOB SERVERS_RENDERING_RENDERER_RD_SOURCES CONFIGURE_DEPENDS
 	*.cpp
 	environment/*.cpp
 	forward_clustered/*.cpp

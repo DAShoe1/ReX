@@ -500,7 +500,7 @@ endif()
 
 
 
-file(GLOB TEXT_SERVER_ADV_SOURCES *.cpp)
+file(GLOB TEXT_SERVER_ADV_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${TEXT_SERVER_ADV_SOURCES}
 )

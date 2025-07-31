@@ -1,12 +1,12 @@
 
-file(GLOB EDITOR_SOURCES *.cpp)
+file(GLOB EDITOR_SOURCES CONFIGURE_DEPENDS *.cpp)
 
-file(GLOB EDITOR_PLATFORM_ANDROID_SOURCES ${CMAKE_SOURCE_DIR}/platform/android/export/*.cpp)
-file(GLOB EDITOR_PLATFORM_IOS_SOURCES ${CMAKE_SOURCE_DIR}/platform/ios/export/*.cpp)
-file(GLOB EDITOR_PLATFORM_LINUXBSD_SOURCES ${CMAKE_SOURCE_DIR}/platform/linuxbsd/export/*.cpp)
-file(GLOB EDITOR_PLATFORM_MACOS_SOURCES ${CMAKE_SOURCE_DIR}/platform/macos/export/*.cpp)
-file(GLOB EDITOR_PLATFORM_WEB_SOURCES ${CMAKE_SOURCE_DIR}/platform/web/export/*.cpp)
-file(GLOB EDITOR_PLATFORM_WINDOWS_SOURCES ${CMAKE_SOURCE_DIR}/platform/windows/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_ANDROID_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/android/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_IOS_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/ios/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_LINUXBSD_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/linuxbsd/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_MACOS_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/macos/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_WEB_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/web/export/*.cpp)
+file(GLOB EDITOR_PLATFORM_WINDOWS_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/windows/export/*.cpp)
 
 
 add_library(rex_editor STATIC
@@ -42,7 +42,7 @@ add_dependencies(file_generators editor_register_exporters)
 target_sources(rex_editor PRIVATE ${CMAKE_SOURCE_DIR}/editor/register_exporters.gen.cpp)
 
 foreach(EXPORTER ${PLATFORM_EXPORTERS})
-	file(GLOB EXPORTER_SOURCES ${CMAKE_SOURCE_DIR}/platform/${EXPORTER}/export/*.cpp)
+	file(GLOB EXPORTER_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/platform/${EXPORTER}/export/*.cpp)
 	target_sources(rex_editor PRIVATE ${EXPORTER_SOURCES})
 endforeach()
 

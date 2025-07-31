@@ -30,7 +30,7 @@ if (NOT MINIMP3_EXTRA_FORMATS)
 	)
 endif()
 
-file(GLOB MINIMP3_SOURCES *.cpp)
+file(GLOB MINIMP3_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${MINIMP3_SOURCES}
 )

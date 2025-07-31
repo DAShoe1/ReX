@@ -77,7 +77,7 @@ clone_library(rex_module_${MODULE_NAME} freetype)
 disable_warnings_for_target(freetype)
 list(APPEND BUILTIN_LIBRARIES freetype)
 
-file(GLOB FREETYPE_SOURCES *.cpp)
+file(GLOB FREETYPE_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${FREETYPE_SOURCES}
 )

@@ -1,4 +1,4 @@
-file(GLOB SERVERS_RENDERING_SOURCES *.cpp)
+file(GLOB SERVERS_RENDERING_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_servers PRIVATE ${SERVERS_RENDERING_SOURCES})
 
 add_subdirectory(dummy)

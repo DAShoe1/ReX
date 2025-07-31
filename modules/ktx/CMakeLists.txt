@@ -55,7 +55,7 @@ disable_warnings_for_target(libktx)
 
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC libktx)
 
-file(GLOB KTX_SOURCES *.cpp)
+file(GLOB KTX_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${KTX_SOURCES}
 )

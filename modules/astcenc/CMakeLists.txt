@@ -41,7 +41,7 @@ if (EDITOR_BUILD)
 endif()
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC astcenc)
 
-file(GLOB ASTCENC_SOURCES *.cpp)
+file(GLOB ASTCENC_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${ASTCENC_SOURCES}
 )

@@ -127,7 +127,7 @@ if (BUILTIN_MBEDTLS)
 
 endif()
 
-file(GLOB MBEDTLS_SOURCES *.cpp)
+file(GLOB MBEDTLS_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${MBEDTLS_SOURCES}
 )
@@ -136,7 +136,7 @@ if (REX_TESTS)
 	target_compile_definitions(rex_module_${MODULE_NAME} PRIVATE
 		TESTS_ENABLED
 	)
-	file(GLOB MBEDTLS_TESTS_SOURCES tests/*.cpp)
+	file(GLOB MBEDTLS_TESTS_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${MBEDTLS_TESTS_SOURCES}
 	)

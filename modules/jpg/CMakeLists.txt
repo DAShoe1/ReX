@@ -17,7 +17,7 @@ disable_warnings_for_target(jpg)
 
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC jpg)
 
-file(GLOB_RECURSE JPG_SOURCES *.cpp)
+file(GLOB_RECURSE JPG_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${JPG_SOURCES}
 )
