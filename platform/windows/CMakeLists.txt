@@ -85,7 +85,6 @@ if(REX_PLATFORM STREQUAL "windows")
 			)
 		else()
 			target_compile_options(rex_engine PUBLIC
-				/w
 				/wd4267
 			)
 		endif()
