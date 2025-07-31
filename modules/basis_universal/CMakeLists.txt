@@ -65,7 +65,7 @@ target_compile_definitions(basis_universal PRIVATE
 
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC basis_universal)
 
-file(GLOB BASIS_UNIVERSAL_SOURCES *.cpp)
+file(GLOB BASIS_UNIVERSAL_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${BASIS_UNIVERSAL_SOURCES}
 )

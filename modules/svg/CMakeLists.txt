@@ -99,7 +99,7 @@ endif()
 
 target_link_libraries(rex_module_${MODULE_NAME} PUBLIC thorvg)
 
-file(GLOB SVG_SOURCES *.cpp)
+file(GLOB SVG_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${SVG_SOURCES}
 )

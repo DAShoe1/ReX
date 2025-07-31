@@ -1,4 +1,4 @@
-file(GLOB DRIVERS_SOURCES *.cpp)
+file(GLOB DRIVERS_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 add_library(rex_drivers STATIC ${DRIVERS_SOURCES})
 clone_library(rex_engine rex_drivers)

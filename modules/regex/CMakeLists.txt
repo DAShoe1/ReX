@@ -80,7 +80,7 @@ if (BUILTIN_PCRE2)
 	)
 endif()
 
-file(GLOB REGEX_SOURCES *.cpp)
+file(GLOB REGEX_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${REGEX_SOURCES}
 )

@@ -55,7 +55,7 @@ if (BUILTIN_MINIUPNPC AND NOT REX_PLATFORM STREQUAL "web")
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC miniupnpc)
 endif()
 
-file(GLOB MINIUPNPC_SOURCES *.cpp)
+file(GLOB MINIUPNPC_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${MINIUPNPC_SOURCES}

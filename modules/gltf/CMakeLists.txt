@@ -44,7 +44,7 @@ if (NOT DISABLE_3D)
 		rex_module_csg
 		rex_module_gridmap
 	)
-	file(GLOB GLTF_SOURCES
+	file(GLOB GLTF_SOURCES CONFIGURE_DEPENDS
 		*.cpp
 		structures/*.cpp
 	)
@@ -54,7 +54,7 @@ if (NOT DISABLE_3D)
 	add_subdirectory(extensions)
 
 	if (EDITOR_BUILD)
-		file(GLOB GLTF_EDITOR_SOURCES editor/*.cpp)
+		file(GLOB GLTF_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${GLTF_EDITOR_SOURCES}
 		)

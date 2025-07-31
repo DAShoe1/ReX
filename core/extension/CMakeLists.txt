@@ -25,5 +25,5 @@ add_custom_target(gdextension_interface_dump DEPENDS
 
 add_dependencies(file_generators gdextension_interface_dump)
 
-file(GLOB_RECURSE CORE_EXTENSION_SOURCES *.cpp)
+file(GLOB_RECURSE CORE_EXTENSION_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_core PRIVATE ${CORE_EXTENSION_SOURCES})

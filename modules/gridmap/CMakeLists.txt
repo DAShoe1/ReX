@@ -20,12 +20,12 @@ if (NOT DISABLE_3D)
 	disable_warnings_for_target(rex_module_${MODULE_NAME})
 	set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-	file(GLOB GRIDMAP_SOURCES *.cpp)
+	file(GLOB GRIDMAP_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${GRIDMAP_SOURCES}
 	)
 	if (EDITOR_BUILD)
-		file(GLOB GRIDMAP_EDITOR_SOURCES editor/*.cpp)
+		file(GLOB GRIDMAP_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${GRIDMAP_EDITOR_SOURCES}
 		)

@@ -3,12 +3,12 @@ if (EDITOR_BUILD)
 	clone_library(rex_modules rex_module_${MODULE_NAME})
 	disable_warnings_for_target(rex_module_${MODULE_NAME})
 	set(MODULE_IS_ENABLED ON PARENT_SCOPE)
-	file(GLOB BETSY_SOURCES *.cpp)
+	file(GLOB BETSY_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${BETSY_SOURCES}
 	)
 
-	file(GLOB_RECURSE GLSL_FILES *.glsl)
+	file(GLOB_RECURSE GLSL_FILES CONFIGURE_DEPENDS *.glsl)
 	list(JOIN GLSL_FILES " " SHADER_FILES_ARGS)
 	list(TRANSFORM GLSL_FILES APPEND ".gen.h")
 	add_custom_command(

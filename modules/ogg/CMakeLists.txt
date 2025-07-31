@@ -33,7 +33,7 @@ if (BUILTIN_LIBOGG)
 
 endif()
 
-file(GLOB OGG_SOURCES *.cpp)
+file(GLOB OGG_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${OGG_SOURCES}
 )

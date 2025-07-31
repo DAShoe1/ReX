@@ -1,4 +1,4 @@
-file(GLOB CORE_SOURCES *.cpp)
+file(GLOB CORE_SOURCES CONFIGURE_DEPENDS *.cpp)
 
 add_library(rex_core STATIC ${CORE_SOURCES})
 

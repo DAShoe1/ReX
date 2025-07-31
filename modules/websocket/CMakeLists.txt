@@ -48,13 +48,13 @@ if (BUILTIN_WSLAY)
 
 endif()
 
-file(GLOB WSLAY_SOURCES *.cpp)
+file(GLOB WSLAY_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${WSLAY_SOURCES}
 )
 
 if (EDITOR_BUILD)
-	file(GLOB WSLAY_EDITOR_SOURCES editor/*.cpp)
+	file(GLOB WSLAY_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${WSLAY_EDITOR_SOURCES}
 	)

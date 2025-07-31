@@ -1,11 +1,22 @@
 cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
 find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
+get_property(isMultiConfig GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(NOT isMultiConfig)
+	set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type")
+endif()
+
 project(rex_engine
         VERSION 4.5
         DESCRIPTION "ReX Game Engine"
         LANGUAGES C CXX
 )
+
+if(NOT isMultiConfig)
+	set_property(CACHE CMAKE_BUILD_TYPE PROPERTY
+		STRINGS Debug Release
+	)
+endif()
 
 # C Standard
 set(CMAKE_C_STANDARD 17)
@@ -77,11 +88,7 @@ endif()
 include(options.cmake)
 
 if (NOT CMAKE_BUILD_TYPE)
-	if (REX_DEV_BUILD OR DEBUG_SYMBOLS)
-		set(CMAKE_BUILD_TYPE Debug)
-	else()
-		set(CMAKE_BUILD_TYPE Release)
-	endif()
+	set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 if (BUILD_TARGET STREQUAL "editor")
@@ -103,9 +110,10 @@ if (DEV_MODE)
 endif()
 
 if (PRODUCTION)
+	set(CMAKE_BUILD_TYPE Release)
 	set(USE_STATIC_CPP ON CACHE BOOL "Link runtime libraries statically" FORCE)
 	set(DEBUG_SYMBOLS OFF CACHE BOOL "Build with debugging symbols" FORCE)
-	set(LTO "auto" CACHE STRING "Link-time optimization (production builds): none, auto, thin, full" FORCE)
+	set(USE_LTO ON CACHE BOOL "Link-time optimization (production builds)" FORCE)
 endif()
 
 # The executable target 'rex_engine' is defined within the target platforms subdirectory
@@ -344,7 +352,7 @@ if (EDITOR_BUILD)
 	add_custom_target(doc_data_class_path DEPENDS ${CMAKE_SOURCE_DIR}/editor/doc_data_class_path.gen.h)
 	add_dependencies(file_generators doc_data_class_path)
 
-	file(GLOB DOCS ${CMAKE_SOURCE_DIR}/doc/classes/*.xml)
+	file(GLOB DOCS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/doc/classes/*.xml)
 	set(MODULE_DIRS)
 	foreach(DOC_PATH ${DOC_CLASS_PATHS})
 		list(FIND MODULE_DIRS ${DOC_PATH} DIR_INDEX)
@@ -353,7 +361,7 @@ if (EDITOR_BUILD)
 		endif()
 	endforeach()
 	foreach(DIR ${MODULE_DIRS})
-		file(GLOB MODULE_DOCS ${DIR}/*.xml)
+		file(GLOB MODULE_DOCS CONFIGURE_DEPENDS ${DIR}/*.xml)
 		list(APPEND DOCS ${MODULE_DOCS})
 	endforeach()
 	set(DOCS_LIST_FILE ${CMAKE_BINARY_DIR}/docs_list.txt)
@@ -372,7 +380,7 @@ if (EDITOR_BUILD)
 	add_custom_target(doc_data_compressed DEPENDS ${CMAKE_SOURCE_DIR}/editor/doc_data_compressed.gen.h)
 	add_dependencies(file_generators doc_data_compressed)
 
-	file(GLOB EDITOR_TRANSLATIONS ${CMAKE_SOURCE_DIR}/editor/translations/editor/*)
+	file(GLOB EDITOR_TRANSLATIONS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/editor/translations/editor/*)
 	set(EDITOR_TRANSLATIONS_LIST_FILE ${CMAKE_BINARY_DIR}/editor_translations_list.txt)
 	file(GENERATE
 		OUTPUT "${EDITOR_TRANSLATIONS_LIST_FILE}"
@@ -389,7 +397,7 @@ if (EDITOR_BUILD)
 	add_custom_target(editor_translations DEPENDS ${CMAKE_SOURCE_DIR}/editor/editor_translations.gen.h)
 	add_dependencies(file_generators editor_translations)
 
-	file(GLOB PROPERTIES_TRANSLATIONS ${CMAKE_SOURCE_DIR}/editor/translations/properties/*)
+	file(GLOB PROPERTIES_TRANSLATIONS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/editor/translations/properties/*)
 	set(PROPERTIES_TRANSLATIONS_LIST_FILE ${CMAKE_BINARY_DIR}/properties_translations_list.txt)
 	file(GENERATE
 		OUTPUT "${PROPERTIES_TRANSLATIONS_LIST_FILE}"
@@ -406,7 +414,7 @@ if (EDITOR_BUILD)
 	add_custom_target(properties_translations DEPENDS ${CMAKE_SOURCE_DIR}/editor/property_translations.gen.h)
 	add_dependencies(file_generators properties_translations)
 
-	file(GLOB DOC_TRANSLATIONS ${CMAKE_SOURCE_DIR}/doc/translations/*)
+	file(GLOB DOC_TRANSLATIONS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/doc/translations/*)
 	set(DOC_TRANSLATIONS_LIST_FILE ${CMAKE_BINARY_DIR}/doc_translations_list.txt)
 	file(GENERATE
 		OUTPUT "${DOC_TRANSLATIONS_LIST_FILE}"
@@ -423,7 +431,7 @@ if (EDITOR_BUILD)
 	add_custom_target(doc_translations DEPENDS ${CMAKE_SOURCE_DIR}/editor/doc_translations.gen.h)
 	add_dependencies(file_generators doc_translations)
 
-	file(GLOB EXTRACTABLE_TRANSLATIONS ${CMAKE_SOURCE_DIR}/editor/translations/extractable/*)
+	file(GLOB EXTRACTABLE_TRANSLATIONS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/editor/translations/extractable/*)
 	set(EXTRACTABLE_TRANSLATIONS_LIST_FILE ${CMAKE_BINARY_DIR}/extractable_translations_list.txt)
 	file(GENERATE
 		OUTPUT "${EXTRACTABLE_TRANSLATIONS_LIST_FILE}"
@@ -441,9 +449,9 @@ if (EDITOR_BUILD)
 	add_dependencies(file_generators extractable_translations)
 
 	# Editor Icons
-	file(GLOB EDITOR_ICONS ${CMAKE_SOURCE_DIR}/editor/icons/*.svg)
+	file(GLOB EDITOR_ICONS CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/editor/icons/*.svg)
 	foreach(MODULE_ICON_PATH ${ICON_PATHS})
-		file(GLOB MODULE_ICONS ${MODULE_ICON_PATH}/*.svg)
+		file(GLOB MODULE_ICONS CONFIGURE_DEPENDS ${MODULE_ICON_PATH}/*.svg)
 		list(APPEND EDITOR_ICONS ${MODULE_ICONS})
 	endforeach()
 	set(EDITOR_ICONS_LIST_FILE ${CMAKE_BINARY_DIR}/editor_icons_list.txt)

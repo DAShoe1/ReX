@@ -48,7 +48,7 @@ if (NOT DISABLE_3D)
 
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC ufbx)
 
-	file(GLOB FBX_SOURCES *.cpp)
+	file(GLOB FBX_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${FBX_SOURCES}
 	)
@@ -56,7 +56,7 @@ if (NOT DISABLE_3D)
 	# NOTE: extensions is empty
 
 	if (EDITOR_BUILD)
-		file(GLOB FBX_EDITOR_SOURCES editor/*.cpp)
+		file(GLOB FBX_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${FBX_EDITOR_SOURCES}
 		)

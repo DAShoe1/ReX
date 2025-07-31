@@ -19,7 +19,7 @@ if (OPENGL3 AND NOT DISABLE_XR)
 
 	# TODO: Web Stuff
 
-	file(GLOB WEBXR_SOURCES *.cpp)
+	file(GLOB WEBXR_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${WEBXR_SOURCES}
 	)

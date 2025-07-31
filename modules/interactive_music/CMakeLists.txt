@@ -21,12 +21,12 @@ clone_library(rex_modules rex_module_${MODULE_NAME})
 disable_warnings_for_target(rex_module_${MODULE_NAME})
 set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-file(GLOB INTERACTIVE_MUSIC_SOURCES *.cpp)
+file(GLOB INTERACTIVE_MUSIC_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${INTERACTIVE_MUSIC_SOURCES}
 )
 if (EDITOR_BUILD)
-	file(GLOB INTERACTIVE_MUSIC_EDITOR_SOURCES editor/*.cpp)
+	file(GLOB INTERACTIVE_MUSIC_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${INTERACTIVE_MUSIC_EDITOR_SOURCES}
 	)

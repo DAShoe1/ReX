@@ -37,7 +37,7 @@ add_custom_target(process_drivers_shaders DEPENDS
 
 add_dependencies(file_generators process_drivers_shaders)
 
-file(GLOB_RECURSE GLES_SOURCES
+file(GLOB_RECURSE GLES_SOURCES CONFIGURE_DEPENDS
 	*.cpp
 )
 target_sources(rex_drivers PRIVATE ${GLES_SOURCES})

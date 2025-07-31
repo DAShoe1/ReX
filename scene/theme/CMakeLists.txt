@@ -12,5 +12,5 @@ add_subdirectory(icons)
 
 add_dependencies(file_generators default_fonts_header)
 
-file(GLOB_RECURSE SCENE_THEME_SOURCES *.cpp)
+file(GLOB_RECURSE SCENE_THEME_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_scene PRIVATE ${SCENE_THEME_SOURCES})

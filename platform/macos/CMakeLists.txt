@@ -136,17 +136,12 @@ if(REX_PLATFORM STREQUAL "macos")
 		endif()
 	endif()
 
-
-	if (LTO STREQUAL "auto")  # LTO benefits for macOS (size, performance) haven't been clearly established yet.
-		set(LTO "none")
-	endif()
-	if (NOT LTO STREQUAL "none")
-		if (LTO STREQUAL "thin")
-			target_compile_options(rex_engine PUBLIC -flto=thin)
-			target_link_options(rex_engine PUBLIC -flto=thin)
-		else()
-			target_compile_options(rex_engine PUBLIC -flto)
-			target_link_options(rex_engine PUBLIC -flto)
+	if (USE_LTO)
+		include(CheckIPOSupported)
+		check_ipo_supported(RESULT LTO_RESULT)
+		if(LTO_RESULT)
+			message(STATUS "LTO Supported: Enabled")
+			set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 		endif()
 	endif()
 

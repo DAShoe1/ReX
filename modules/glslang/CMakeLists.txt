@@ -72,7 +72,7 @@ if (VULKAN OR D3D12 OR METAL)
 		target_link_libraries(rex_module_${MODULE_NAME} PUBLIC glslang)
 	endif()
 
-	file(GLOB GLSLANG_SOURCES *.cpp)
+	file(GLOB GLSLANG_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${GLSLANG_SOURCES}
 	)

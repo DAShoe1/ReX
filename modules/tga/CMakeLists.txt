@@ -3,7 +3,7 @@ clone_library(rex_modules rex_module_${MODULE_NAME})
 disable_warnings_for_target(rex_module_${MODULE_NAME})
 set(MODULE_IS_ENABLED ON PARENT_SCOPE)
 
-file(GLOB TGA_SOURCES *.cpp)
+file(GLOB TGA_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${TGA_SOURCES}
 )

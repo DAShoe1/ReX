@@ -139,7 +139,7 @@ if (BUILTIN_LIBWEBP)
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC libwebp)
 endif()
 
-file(GLOB LIBWEBP_SOURCES *.cpp)
+file(GLOB LIBWEBP_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${LIBWEBP_SOURCES}
 )

@@ -83,7 +83,7 @@ if (NOT ARCH MATCHES "^rv.*")
 
 	endif()
 
-	file(GLOB THEORA_SOURCES *.cpp)
+	file(GLOB THEORA_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${THEORA_SOURCES}
 	)

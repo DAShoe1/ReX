@@ -17,7 +17,7 @@ if (EDITOR_BUILD AND NOT REX_PLATFORM MATCHES "android|ios")
 		target_link_libraries(rex_module_${MODULE_NAME} PUBLIC xatlas)
 	endif()
 
-	file(GLOB XATLAS_SOURCES *.cpp)
+	file(GLOB XATLAS_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${XATLAS_SOURCES}
 	)

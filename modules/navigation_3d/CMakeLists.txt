@@ -68,7 +68,7 @@ if (NOT DISABLE_3D)
 		target_link_libraries(rex_module_${MODULE_NAME} PUBLIC rvo2_3d)
 	endif()
 
-	file(GLOB NAVIGATION_3D_SOURCES
+	file(GLOB NAVIGATION_3D_SOURCES CONFIGURE_DEPENDS
 		*.cpp
 		3d/*.cpp
 	)
@@ -76,7 +76,7 @@ if (NOT DISABLE_3D)
 		${NAVIGATION_3D_SOURCES}
 	)
 	if (EDITOR_BUILD)
-		file(GLOB NAVIGATION_3D_EDITOR_SOURCES editor/*.cpp)
+		file(GLOB NAVIGATION_3D_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${NAVIGATION_3D_EDITOR_SOURCES}
 		)

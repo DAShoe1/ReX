@@ -31,13 +31,13 @@ add_dependencies(rex_module_${MODULE_NAME}
 	rex_module_websocket
 )
 
-file(GLOB GDSCRIPT_SOURCES *.cpp)
+file(GLOB GDSCRIPT_SOURCES CONFIGURE_DEPENDS *.cpp)
 target_sources(rex_module_${MODULE_NAME} PRIVATE
 	${GDSCRIPT_SOURCES}
 )
 
 if (EDITOR_BUILD)
-	file(GLOB_RECURSE SCRIPT_TEMPLATES ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/*.gd)
+	file(GLOB_RECURSE SCRIPT_TEMPLATES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/*.gd)
 	add_custom_command(
 		OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/templates.gen.h
 		COMMAND ${_Python3_EXECUTABLE}
@@ -49,12 +49,12 @@ if (EDITOR_BUILD)
 	add_custom_target(script_templates DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/editor/script_templates/templates.gen.h)
 	add_dependencies(file_generators script_templates)
 
-	file(GLOB GDSCRIPT_EDITOR_SOURCES editor/*.cpp)
+	file(GLOB GDSCRIPT_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${GDSCRIPT_EDITOR_SOURCES}
 	)
 	if("jsonrpc" IN_LIST ENABLED_MODULES AND "websocket" IN_LIST ENABLED_MODULES)
-		file(GLOB GDSCRIPT_LANGUAGE_SERVER_SOURCES language_server/*.cpp)
+		file(GLOB GDSCRIPT_LANGUAGE_SERVER_SOURCES CONFIGURE_DEPENDS language_server/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${GDSCRIPT_LANGUAGE_SERVER_SOURCES}
 		)
@@ -73,7 +73,7 @@ if (REX_TESTS)
 	target_compile_definitions(rex_module_${MODULE_NAME} PRIVATE
 		TESTS_ENABLED
 	)
-	file(GLOB GDSCRIPT_TESTS_SOURCES tests/*.cpp)
+	file(GLOB GDSCRIPT_TESTS_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${GDSCRIPT_TESTS_SOURCES}
 	)

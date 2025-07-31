@@ -57,13 +57,13 @@ if (NOT DISABLE_3D)
 	clone_library(rex_module_${MODULE_NAME} manifold)
 	disable_warnings_for_target(manifold)
 	target_link_libraries(rex_module_${MODULE_NAME} PUBLIC manifold)
-	file(GLOB CSG_SOURCES *.cpp)
+	file(GLOB CSG_SOURCES CONFIGURE_DEPENDS *.cpp)
 	target_sources(rex_module_${MODULE_NAME} PRIVATE
 		${CSG_SOURCES}
 	)
 
 	if (EDITOR_BUILD)
-		file(GLOB CSG_EDITOR_SOURCES editor/*.cpp)
+		file(GLOB CSG_EDITOR_SOURCES CONFIGURE_DEPENDS editor/*.cpp)
 		target_sources(rex_module_${MODULE_NAME} PRIVATE
 			${CSG_EDITOR_SOURCES}
 		)
